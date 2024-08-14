@@ -1,31 +1,38 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
-router.get('/', (req, res, next) => {
-    res.status(200).send({
-        mensagem: 'Usando GET na rota PRODUTOS'
-    });
+//Consultar
+router.get("/:id_produto", (req, res, next) => {
+  const id = req.params.id_produto;
 
+  res.status(200).send({
+    mensagem: "Retornar os PRODUTOS",
+    id: id,
+  });
 });
 
-router.post('/', (req, res, next) => {
-    res.status(201).send({
-        mensagem: 'Usando POST na rota PRODUTOS'
-    });
-
+//Inserir
+router.post("/", (req, res, next) => {
+  const produto = {
+    nome: req.body.nome,
+    preco: req.body.preco,
+  };
+  res.status(201).send({
+    mensagem: "Inserir os PRODUTOS",
+    produtoCriado: produto,
+  });
 });
-
-router.patch('/', (req, res, next) => {
-    res.status(201).send({
-        mensagem: 'Usando PATH na rota PRODUTOS'
-    });
-
+//Alterar
+router.patch("/", (req, res, next) => {
+  res.status(201).send({
+    mensagem: "Alterar PRODUTOS",
+  });
 });
-router.delete('/', (req, res, next) => {
-    res.status(201).send({
-        mensagem: 'Usando DELETE na rota PRODUTOS'
-    });
-
+//Excluir
+router.delete("/", (req, res, next) => {
+  res.status(201).send({
+    mensagem: "Excluir PRODUTOS",
+  });
 });
 
 module.exports = router;
